@@ -5,8 +5,15 @@ import { Menu } from 'lucide-react'
 import ProfileButton from './ProfileButton'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { ModeToggle } from './ModeToggle.tsx'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const NavMenu = () => {
+	const { user, isLoading } = useAuth0()
+	const { loginWithRedirect } = useAuth0()
+	const handleLogin = () => {
+		loginWithRedirect()
+	}
+	console.log(user)
 	return (
 		<>
 			<header className='sm:flex sm:justify-between py-3 px-4 border-b'>
@@ -65,8 +72,10 @@ const NavMenu = () => {
 								<ModeToggle />
 							</div>
 							<span className='sr-only'>Toggle Theme</span>
-
-							<ProfileButton />
+							{!isLoading && user && <ProfileButton />}
+							{!user && !isLoading && (
+								<Button onClick={handleLogin}>Login</Button>
+							)}
 						</div>
 					</div>
 				</Container>
