@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
 
 const domain = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN
 const clientId = import.meta.env.VITE_REACT_APP_AUTH0_CLIENT_ID
+const audience = import.meta.env.VITE_REACT_APP_AUDIENCE
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
@@ -29,6 +30,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				clientId={clientId}
 				authorizationParams={{
 					redirect_uri: window.location.origin,
+					audience: audience,
+					scope: 'openid profile email',
 				}}
 			>
 				<BrowserRouter>
