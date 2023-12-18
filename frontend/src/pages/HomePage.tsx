@@ -7,7 +7,7 @@ const HomePage = () => {
 	const { getAccessTokenSilently } = useAuth0()
 	const callApi = async () => {
 		const response = await axios.get('http://localhost:3001')
-		console.log(response)
+		console.log(response.data)
 	}
 	const callProtectedApi = async () => {
 		const token = await getAccessTokenSilently()
@@ -17,7 +17,7 @@ const HomePage = () => {
 				Authorization: `Bearer ${token}`,
 			},
 		})
-		console.log(response)
+		console.log(response.data)
 	}
 	const ingredients = ['potatoes', 'bacon', 'all spice', 'onions']
 	const time = '30'
