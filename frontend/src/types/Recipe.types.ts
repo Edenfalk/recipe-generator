@@ -7,6 +7,7 @@ export type TOpenAiRecipe = {
 	description: string
 	ingredients: string[]
 	time: string
+	servings: string
 	instructions: string[]
 }
 

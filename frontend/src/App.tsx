@@ -14,7 +14,7 @@ function App() {
 						<Route path='/' element={<HomePage />} />
 						<Route path='/myrecipes' element={<MyRecipesPage />} />
 						<Route
-							path='/createrecipies'
+							path='/createrecipe'
 							element={<CreateRecipePage />}
 						/>
 

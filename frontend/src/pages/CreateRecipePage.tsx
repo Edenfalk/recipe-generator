@@ -1,5 +1,7 @@
+import GenerateRecipeForm from '@/components/GenerateRecipeForm'
+
 const CreateRecipePage = () => {
-	return <div></div>
+	return <GenerateRecipeForm />
 }
 
 export default CreateRecipePage
