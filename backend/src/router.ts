@@ -1,37 +1,42 @@
-import { Router } from 'express'
+// import { Router } from 'express'
 
-const router = Router()
+// const router = Router()
 
-// Recipe
+// // User
+// router.get('/users', () => {})
+// router.get('/users/:id', () => {})
+// router.post('/users', () => {})
 
-// Get all recipes. Pagination?
-router.get('/recipes', (req, res) => {
-	res.json({ message: 'nodemon fo sho' })
-})
+// // Recipe
 
-router.get('/recipes/:id', () => {})
-router.put('/recipes/:id', () => {})
-router.post('/recipes', () => {})
-router.delete('/recipes/:id', () => {})
+// // Get all recipes. Pagination?
+// router.get('/recipes', (req, res) => {
+// 	res.json({ message: 'nodemon fo sho' })
+// })
 
-// Comments
-// Get all comments for one recipe
-router.get('/recipes/:recipeId/comments', () => {})
-// Get one comment by id
-router.get('/recipes/comments/:id', () => {})
-// Update one comment by id
-router.put('/comments/:id', () => {})
-// Add comment for specific recipe
-router.post('/recipes/:recipeId/comments', () => {})
+// router.get('/recipes/:id', () => {})
+// router.put('/recipes/:id', () => {})
+// router.post('/recipes', () => {})
+// router.delete('/recipes/:id', () => {})
 
-router.delete('/comments/:id', () => {})
+// // Comments
+// // Get all comments for one recipe
+// router.get('/recipes/:recipeId/comments', () => {})
+// // Get one comment by id
+// router.get('/recipes/comments/:id', () => {})
+// // Update one comment by id
+// router.put('/comments/:id', () => {})
+// // Add comment for specific recipe
+// router.post('/recipes/:recipeId/comments', () => {})
 
-// Ratings
-// Get all ratings for specific recipe
-router.get('/recipes/:recipeId/ratings', () => {})
-// Post rating for specific recipe
-router.post('/recipes/:recipeId/ratings', () => {})
-// Get average ratings for specific recipe
-router.get('/recipes/:recipeId/ratings/average', () => {})
+// router.delete('/comments/:id', () => {})
 
-export default router
+// // Ratings
+// // Get all ratings for specific recipe
+// router.get('/recipes/:recipeId/ratings', () => {})
+// // Post rating for specific recipe
+// router.post('/recipes/:recipeId/ratings', () => {})
+// // Get average ratings for specific recipe
+// router.get('/recipes/:recipeId/ratings/average', () => {})
+
+// export default router

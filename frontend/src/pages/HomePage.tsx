@@ -1,38 +1,36 @@
-import { Button } from '@/components/ui/button'
 import useOpenAiRecipe from '@/hooks/useOpenAiRecipe'
+import { createUser } from '@/service/RecipeGeneratorAPI'
 import { useAuth0 } from '@auth0/auth0-react'
-import axios from 'axios'
+import { useEffect } from 'react'
 
 const HomePage = () => {
-	const { getAccessTokenSilently } = useAuth0()
-	const callApi = async () => {
-		const response = await axios.get('http://localhost:3001')
-		console.log(response.data)
-	}
-	const callProtectedApi = async () => {
+	const { user, getAccessTokenSilently } = useAuth0()
+	const checkNewUser = async () => {
 		const token = await getAccessTokenSilently()
-		console.log(token)
-		const response = await axios.get('http://localhost:3001/protected', {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		})
-		console.log(response.data)
+		if (user?.email && user.nickname && user.sub) {
+			const userData = {
+				email: user.email,
+				nickname: user.nickname,
+				auth0Id: user.sub,
+			}
+			createUser(userData, token)
+		}
 	}
-	const ingredients = ['potatoes', 'bacon', 'all spice', 'onions']
-	const time = '30'
-	const servings = '4'
+	useEffect(() => {
+		if (user) {
+			checkNewUser()
+		}
+	})
+
+	const ingredients = ['cod loin', 'bacon', 'potatoes', 'beets', 'cream']
+	const time = '60'
+	const servings = '6'
 
 	const { data } = useOpenAiRecipe(ingredients, time, servings)
 
 	console.log('data from HP', data)
 
-	return (
-		<div>
-			<Button onClick={callApi}>Call API route</Button>
-			<Button onClick={callProtectedApi}>Call Protected API route</Button>
-		</div>
-	)
+	return <div></div>
 }
 
 export default HomePage
