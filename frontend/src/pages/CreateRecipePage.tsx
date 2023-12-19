@@ -1,7 +1,39 @@
 import GenerateRecipeForm from '@/components/GenerateRecipeForm'
+import RecipeDisplay from '@/components/RecipeDisplay'
+import useOpenAiRecipe from '@/hooks/useOpenAiRecipe'
+import { TCreateRecipeSchema } from '@/zod/ZRecipeSchema'
+import { useState } from 'react'
 
 const CreateRecipePage = () => {
-	return <GenerateRecipeForm />
+	const [recipeData, setRecipeData] = useState<TCreateRecipeSchema | null>(
+		null
+	)
+	const [isQueryEnabled, setIsQueryEnabled] = useState(false)
+	const handleNewRecipeClick = () => {
+		setRecipeData(null)
+		setIsQueryEnabled(false)
+	}
+
+	const recipeQueryResult = useOpenAiRecipe(
+		recipeData?.ingredients || [],
+		recipeData?.time || '',
+		recipeData?.servings || '',
+		isQueryEnabled
+	)
+	const handleRecipeSubmit = (formData: TCreateRecipeSchema) => {
+		setRecipeData(formData)
+		setIsQueryEnabled(true)
+	}
+	console.log('page submit', recipeQueryResult.data)
+
+	return recipeQueryResult.data ? (
+		<RecipeDisplay
+			recipe={recipeQueryResult.data}
+			onNewRecipe={handleNewRecipeClick}
+		/>
+	) : (
+		<GenerateRecipeForm onRecipeSubmit={handleRecipeSubmit} />
+	)
 }
 
 export default CreateRecipePage

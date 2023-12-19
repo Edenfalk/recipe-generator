@@ -3,6 +3,7 @@ import NavMenu from './components/NavMenu'
 import HomePage from './pages/HomePage'
 import MyRecipesPage from './pages/MyRecipesPage'
 import CreateRecipePage from './pages/CreateRecipePage'
+import LoadingSpinner from './components/LoadingSpinner'
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 			<>
 				<div>
 					<NavMenu />
+					<LoadingSpinner />
 					<Routes>
 						<Route path='/' element={<HomePage />} />
 						<Route path='/myrecipes' element={<MyRecipesPage />} />

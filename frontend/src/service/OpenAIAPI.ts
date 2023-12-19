@@ -8,15 +8,15 @@ const openai = new OpenAI({
 })
 
 export async function getOpenAiRecipe(
-	ingredients: string[],
 	time: string,
-	servings: string
+	servings: string,
+	ingredients: string[]
 ): Promise<TOpenAiRecipe> {
 	const response = await openai.chat.completions.create({
 		messages: [
 			{
 				role: 'assistant',
-				content: `You are a helpful recipe creator. Create a recipe based of ${ingredients} that can be made in ${time} minutes for ${servings} persons. Name the recipe, give a short description, list the ingredients and a numbered step by step instructions guide. Respond with a JSON object with this structure: {
+				content: `You are a helpful recipe creator. Create a recipe based of ${ingredients} that can be made in ${time} minutes for ${servings} persons. Name the recipe, give a short description, list the ingredients and a numbered step by step instructions guide. Use the metric system. Respond with a JSON object with this structure: {
                             "title": "string"
                             "description": "string",
                             "servings": "string",

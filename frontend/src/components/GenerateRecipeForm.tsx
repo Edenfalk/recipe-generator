@@ -13,7 +13,12 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { useState } from 'react'
 
-const GenerateRecipeForm = () => {
+interface GenerateRecipeFormProps {
+	onRecipeSubmit: (data: TCreateRecipeSchema) => void
+}
+const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
+	onRecipeSubmit,
+}) => {
 	const form = useForm<TCreateRecipeSchema>({
 		resolver: zodResolver(ZRecipeSchema),
 		defaultValues: {
@@ -22,8 +27,10 @@ const GenerateRecipeForm = () => {
 			ingredients: [],
 		},
 	})
+
 	const [ingredients, setIngredients] = useState<string[]>([])
 	const [currentIngredient, setCurrentIngredient] = useState('')
+
 	const addIngredient = () => {
 		if (currentIngredient) {
 			setIngredients([...ingredients, currentIngredient])
@@ -42,7 +49,7 @@ const GenerateRecipeForm = () => {
 		)
 	}
 	const handleSubmit = (data: TCreateRecipeSchema) => {
-		console.log('submit', data)
+		onRecipeSubmit(data)
 	}
 	return (
 		<div className='flex min-h-screen flex-col items-center p-24'>

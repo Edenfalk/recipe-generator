@@ -1,4 +1,3 @@
-import useOpenAiRecipe from '@/hooks/useOpenAiRecipe'
 import { createUser } from '@/service/RecipeGeneratorAPI'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
@@ -21,14 +20,6 @@ const HomePage = () => {
 			checkNewUser()
 		}
 	})
-
-	const ingredients = ['cod loin', 'bacon', 'potatoes', 'beets', 'cream']
-	const time = '60'
-	const servings = '6'
-
-	const { data } = useOpenAiRecipe(ingredients, time, servings)
-
-	console.log('data from HP', data)
 
 	return <div></div>
 }

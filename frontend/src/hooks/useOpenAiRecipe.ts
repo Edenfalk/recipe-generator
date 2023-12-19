@@ -4,11 +4,13 @@ import { useQuery } from '@tanstack/react-query'
 const useOpenAiRecipe = (
 	ingredients: string[],
 	time: string,
-	servings: string
+	servings: string,
+	isQueryEnabled: boolean
 ) => {
 	return useQuery({
-		queryKey: ['Ai Recipe'],
-		queryFn: () => getOpenAiRecipe(ingredients, time, servings),
+		queryKey: ['Ai Recipe', ingredients],
+		queryFn: () => getOpenAiRecipe(time, servings, ingredients),
+		enabled: isQueryEnabled,
 	})
 }
 
