@@ -12,6 +12,7 @@ import {
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { useState } from 'react'
+import { Card } from './ui/card'
 
 interface GenerateRecipeFormProps {
 	onRecipeSubmit: (data: TCreateRecipeSchema) => void
@@ -52,112 +53,114 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 		onRecipeSubmit(data)
 	}
 	return (
-		<div className='flex min-h-screen flex-col items-center p-24'>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(handleSubmit)}
-					className='max-w-md w-full flex flex-col gap-6'
-				>
-					<FormField
-						control={form.control}
-						name='servings'
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>Servings</FormLabel>
-									<FormControl>
-										<Input
-											placeholder='servings'
-											type='number'
-											min={1}
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)
-						}}
-					/>
-					<FormField
-						control={form.control}
-						name='time'
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>Cooking time</FormLabel>
-									<FormControl>
-										<Input
-											placeholder='Fill in cooking time in minutes'
-											type='number'
-											min={1}
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)
-						}}
-					/>
-					<FormField
-						control={form.control}
-						name='ingredients'
-						render={({ field }) => {
-							return (
-								<div className='flex flex-col gap-2'>
-									<FormLabel>Add ingredients</FormLabel>
-									<div className='flex gap-2'>
-										<FormControl className='flex-grow'>
+		<div className='flex justify-center items-center min-h-screen'>
+			<Card className='flex flex-col items-center p-8 max-w-md w-full'>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(handleSubmit)}
+						className='max-w-md w-full flex flex-col gap-6'
+					>
+						<FormField
+							control={form.control}
+							name='servings'
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>Servings</FormLabel>
+										<FormControl>
 											<Input
-												placeholder='Add ingredients one by one'
+												placeholder='servings'
+												type='number'
+												min={1}
 												{...field}
-												value={currentIngredient}
-												onChange={(e) =>
-													setCurrentIngredient(
-														e.target.value
-													)
-												}
-												onKeyDown={(e) => {
-													if (e.key === 'Enter') {
-														e.preventDefault()
-														addIngredient()
-													}
-												}}
 											/>
 										</FormControl>
-										<Button
-											className='flex-shrink-0'
-											type='button'
-											onClick={addIngredient}
-										>
-											Add
-										</Button>
+										<FormMessage />
+									</FormItem>
+								)
+							}}
+						/>
+						<FormField
+							control={form.control}
+							name='time'
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>Cooking time</FormLabel>
+										<FormControl>
+											<Input
+												placeholder='Fill in cooking time in minutes'
+												type='number'
+												min={1}
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)
+							}}
+						/>
+						<FormField
+							control={form.control}
+							name='ingredients'
+							render={({ field }) => {
+								return (
+									<div className='flex flex-col gap-2'>
+										<FormLabel>Add ingredients</FormLabel>
+										<div className='flex gap-2'>
+											<FormControl className='flex-grow'>
+												<Input
+													placeholder='Add ingredients one by one'
+													{...field}
+													value={currentIngredient}
+													onChange={(e) =>
+														setCurrentIngredient(
+															e.target.value
+														)
+													}
+													onKeyDown={(e) => {
+														if (e.key === 'Enter') {
+															e.preventDefault()
+															addIngredient()
+														}
+													}}
+												/>
+											</FormControl>
+											<Button
+												className='flex-shrink-0'
+												type='button'
+												onClick={addIngredient}
+											>
+												Add
+											</Button>
+										</div>
+										<FormMessage />
 									</div>
-									<FormMessage />
-								</div>
-							)
-						}}
-					/>
-					<div className='flex flex-wrap gap-2'>
-						{ingredients.map((ingredient, index) => (
-							<div
-								key={index}
-								className='flex items-center justify-between border rounded-full p-2'
-							>
-								<span>{ingredient}</span>
-								<button
-									className='ps-3'
-									onClick={() => removeIngredient(index)}
+								)
+							}}
+						/>
+						<div className='flex flex-wrap gap-2'>
+							{ingredients.map((ingredient, index) => (
+								<div
+									key={index}
+									className='flex items-center justify-between border rounded-full p-2'
 								>
-									X
-								</button>
-							</div>
-						))}
-					</div>
-					<Button type='submit' variant='secondary'>
-						Create Recipe! 🍕
-					</Button>
-				</form>
-			</Form>
+									<span>{ingredient}</span>
+									<button
+										className='ps-3'
+										onClick={() => removeIngredient(index)}
+									>
+										X
+									</button>
+								</div>
+							))}
+						</div>
+						<Button type='submit' variant='default'>
+							Create Recipe! 🍕
+						</Button>
+					</form>
+				</Form>
+			</Card>
 		</div>
 	)
 }
