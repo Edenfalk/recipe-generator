@@ -19,9 +19,18 @@ export const createUser = async (user: TNewUser, token: string) => {
 }
 
 export const createRecipe = async (recipe: TOpenAiRecipe, token: string) => {
-	const response = await recipeGenerator.post<TRecipe>(
-		'api/recipes',
-		recipe,
+	const response = await recipeGenerator.post<TRecipe>('/recipes', recipe, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+	console.log(response.data)
+	return response.data
+}
+
+export const getRecipesByUser = async (token: string) => {
+	const response = await recipeGenerator.get<TRecipe[]>(
+		'/recipes/myrecipes',
 		{
 			headers: {
 				Authorization: `Bearer ${token}`,

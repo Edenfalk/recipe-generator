@@ -4,6 +4,7 @@ import {
 	deleteRecipe,
 	getRecipeById,
 	getRecipes,
+	getRecipesByUser,
 	updateRecipe,
 } from '../controllers/recipeController'
 
@@ -11,6 +12,10 @@ const router = Router()
 
 // Create a new recipe
 router.post('/', createRecipe)
+
+// Get recipe by user
+router.get('/myrecipes', getRecipesByUser)
+
 // Get all recipes
 router.get('/', getRecipes)
 

@@ -44,6 +44,28 @@ export const createRecipe = async (req: Request, res: Response) => {
 	}
 }
 
+export const getRecipesByUser = async (req: Request, res: Response) => {
+	try {
+		const authorId = req.auth?.payload.sub
+
+		if (!authorId) {
+			return res
+				.status(401)
+				.send('You need to log in to see your recipes')
+		}
+
+		const recipes = await prisma.recipe.findMany({
+			where: {
+				authorId: authorId,
+			},
+		})
+
+		res.status(200).json(recipes)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
+}
+
 export const getRecipes = async (req: Request, res: Response) => {
 	// Logik för att hämta alla recept
 }
