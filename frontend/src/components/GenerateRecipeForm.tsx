@@ -13,6 +13,7 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { useState } from 'react'
 import { Card } from './ui/card'
+import { Plus } from 'lucide-react'
 
 interface GenerateRecipeFormProps {
 	onRecipeSubmit: (data: TCreateRecipeSchema) => void
@@ -53,7 +54,7 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 		onRecipeSubmit(data)
 	}
 	return (
-		<div className='flex justify-center items-center min-h-screen'>
+		<div className='flex justify-center items-center p-12'>
 			<Card className='flex flex-col items-center p-8 max-w-md w-full'>
 				<Form {...form}>
 					<form
@@ -131,7 +132,7 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 												type='button'
 												onClick={addIngredient}
 											>
-												Add
+												<Plus />
 											</Button>
 										</div>
 										<FormMessage />

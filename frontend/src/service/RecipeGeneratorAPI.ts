@@ -1,3 +1,4 @@
+import { TOpenAiRecipe, TRecipe } from '@/types/Recipe.types'
 import { TNewUser, TUser } from '@/types/User.types'
 import axios from 'axios'
 
@@ -14,5 +15,19 @@ export const createUser = async (user: TNewUser, token: string) => {
 			Authorization: `Bearer ${token}`,
 		},
 	})
+	return response.data
+}
+
+export const createRecipe = async (recipe: TOpenAiRecipe, token: string) => {
+	const response = await recipeGenerator.post<TRecipe>(
+		'api/recipes',
+		recipe,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	)
+	console.log(response.data)
 	return response.data
 }

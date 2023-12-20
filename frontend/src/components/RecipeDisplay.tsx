@@ -2,6 +2,8 @@ import { TOpenAiRecipe } from '@/types/Recipe.types'
 import React from 'react'
 import { Button } from './ui/button'
 import { ArrowLeftFromLine, Download } from 'lucide-react'
+import { useAuth0 } from '@auth0/auth0-react'
+import { createRecipe } from '@/service/RecipeGeneratorAPI'
 
 interface RecipeProps {
 	recipe: TOpenAiRecipe
@@ -9,6 +11,11 @@ interface RecipeProps {
 }
 
 const RecipeDisplay: React.FC<RecipeProps> = ({ recipe, onNewRecipe }) => {
+	const { getAccessTokenSilently } = useAuth0()
+	const handleCreateRecipe = async () => {
+		const token = await getAccessTokenSilently()
+		createRecipe(recipe, token)
+	}
 	return (
 		<div className='max-w-4xl mx-auto p-6 shadow-lg border rounded-lg'>
 			<h1 className='text-3xl lg:text-4xl font-bold mb-3'>
@@ -47,7 +54,7 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe, onNewRecipe }) => {
 					<ArrowLeftFromLine className='pe-2' />
 					Create new recipe
 				</Button>
-				<Button>
+				<Button onClick={handleCreateRecipe}>
 					Save to my recipes <Download className='ps-2' />
 				</Button>
 			</div>

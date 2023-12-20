@@ -27,6 +27,8 @@ model Recipe {
     description  String
     ingredients  String[]
     instructions String[]
+    time         String
+    servings     String
     isPublic     Boolean   @default(false)
     comments     Comment[]
     ratings      Rating[]

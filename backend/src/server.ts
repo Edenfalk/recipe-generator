@@ -1,5 +1,4 @@
 import express from 'express'
-// import router from '../src/routes/userRoutes'
 import morgan from 'morgan'
 import cors from 'cors'
 import axios from 'axios'
@@ -8,6 +7,7 @@ import { Request, Response, NextFunction } from 'express'
 import { HttpError } from './types.ts/error.types'
 import { jwtCheck, validateJwt } from './middleware/jwtMiddleware'
 import userRoutes from './routes/userRoutes'
+import recipeRoutes from './routes/recipeRoutes'
 const app = express()
 
 // Allow only localhost/5173 to access the API
@@ -23,7 +23,8 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(validateJwt)
-app.use('/api', userRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/recipes', recipeRoutes)
 app.get('/', (req, res) => {
 	console.log('hello from express')
 	res.status(200)

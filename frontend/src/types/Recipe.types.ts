@@ -19,6 +19,8 @@ export type TRecipe = {
 	description: string
 	ingredients: string[]
 	instructions: string[]
+	time: string
+	servings: string
 	isPublic: boolean
 	comments: TComments[]
 	ratings: TRatings[]
