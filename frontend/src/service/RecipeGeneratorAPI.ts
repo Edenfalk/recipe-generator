@@ -10,7 +10,7 @@ const recipeGenerator = axios.create({
 })
 
 export const createUser = async (user: TNewUser, token: string) => {
-	const response = await recipeGenerator.post<TUser>('api/users', user, {
+	const response = await recipeGenerator.post<TUser>('/users', user, {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
