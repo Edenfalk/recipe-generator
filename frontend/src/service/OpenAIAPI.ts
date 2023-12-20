@@ -16,14 +16,20 @@ export async function getOpenAiRecipe(
 		messages: [
 			{
 				role: 'assistant',
-				content: `You are a helpful recipe creator. Create a recipe based of ${ingredients} that can be made in ${time} minutes for ${servings} persons. Name the recipe, give a short description, list the ingredients and a numbered step by step instructions guide. Use the metric system. Respond with a JSON object with this structure: {
-                            "title": "string"
-                            "description": "string",
-                            "servings": "string",
-                            "ingredients": "string[]"
-                            "time": "string",
-                            "instructions": "string[]",
-                    } `,
+				content: `As an AI trained in generating practical and safe food recipes, your task is to create a recipe using these common kitchen ingredients: ${ingredients.join(
+					', '
+				)}. The recipe should be feasible to prepare in ${time} minutes and suitable for ${servings} persons. Please provide a recipe with a title, a brief description, a list of ingredients, and step-by-step cooking instructions. The response should be in JSON format with the following structure:
+
+                {
+                  "title": "string",
+                  "description": "string",
+                  "servings": "string",
+                  "ingredients": "string[]",
+                  "time": "string",
+                  "instructions": "string[]",
+                }
+                
+                If the ingredients provided do not allow for a conventional food recipe, or if they include any non-food items or unsafe combinations, respond with: {"error": "Invalid ingredients provided"}. This is to ensure the recipe is practical, uses ordinary food ingredients, and is safe for general consumption.`,
 			},
 		],
 		model: 'gpt-3.5-turbo-0613',

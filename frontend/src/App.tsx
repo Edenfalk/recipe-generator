@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import MyRecipesPage from './pages/MyRecipesPage'
 import CreateRecipePage from './pages/CreateRecipePage'
 import LoadingSpinner from './components/LoadingSpinner'
+import { Toaster } from './components/ui/toaster'
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 						{/* Not Found */}
 						{/* <Route path='*' element={<PageNotFound />} /> */}
 					</Routes>
+					<Toaster />
 				</div>
 				{/* <ToastContainer theme='colored' autoClose={2000} /> */}
 			</>
