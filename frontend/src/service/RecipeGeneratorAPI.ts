@@ -6,7 +6,6 @@ const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const recipeGenerator = axios.create({
 	baseURL: BASE_URL,
-	timeout: 3000,
 })
 
 export const createUser = async (user: TNewUser, token: string) => {

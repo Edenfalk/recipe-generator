@@ -29,6 +29,7 @@ model Recipe {
     instructions String[]
     time         String
     servings     String
+    imageUrl     String
     isPublic     Boolean   @default(false)
     comments     Comment[]
     ratings      Rating[]

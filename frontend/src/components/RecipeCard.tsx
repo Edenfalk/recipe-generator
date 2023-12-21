@@ -34,7 +34,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 							>
 								<CardHeader className='flex flex-col sm:flex-row gap-4 items-center'>
 									<div className='flex-1'>
-										<CardTitle>{recipe.title}</CardTitle>
+										<img
+											src={recipe.imageUrl}
+											alt={recipe.title}
+											className='w-full h-auto max-w-xs max-h-xs object-cover'
+										/>
+										<CardTitle className='pt-4'>
+											{recipe.title}
+										</CardTitle>
 										<CardDescription className='pt-4'>
 											<span className='me-4'>
 												{recipe.time}
