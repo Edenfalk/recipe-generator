@@ -5,6 +5,7 @@ import MyRecipesPage from './pages/MyRecipesPage'
 import CreateRecipePage from './pages/CreateRecipePage'
 import LoadingSpinner from './components/LoadingSpinner'
 import { Toaster } from './components/ui/toaster'
+import SingleRecipePage from './pages/SingleRecipePage'
 
 function App() {
 	return (
@@ -19,6 +20,14 @@ function App() {
 						<Route
 							path='/createrecipe'
 							element={<CreateRecipePage />}
+						/>
+						{/* <Route
+							path='/recipes'
+							element={<RecipesPage />}
+						/> */}
+						<Route
+							path='/recipes/:id'
+							element={<SingleRecipePage />}
 						/>
 
 						{/* Not Found */}

@@ -9,6 +9,7 @@ import {
 	CardTitle,
 } from './ui/card'
 import { MessageSquare, Star, User } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 interface RecipeCardProps {
 	recipes: TRecipe[]
@@ -34,14 +35,16 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 							>
 								<CardHeader className='flex flex-col sm:flex-row gap-4 items-center'>
 									<div className='flex-1'>
-										<img
-											src={recipe.imageUrl}
-											alt={recipe.title}
-											className='w-full h-auto max-w-xs max-h-xs object-cover'
-										/>
-										<CardTitle className='pt-4'>
-											{recipe.title}
-										</CardTitle>
+										<Link to={`/recipes/${recipe.id}`}>
+											<img
+												src={recipe.imageUrl}
+												alt={recipe.title}
+												className='w-full h-auto max-w-xs max-h-xs object-cover'
+											/>
+											<CardTitle className='pt-4'>
+												{recipe.title}
+											</CardTitle>
+										</Link>
 										<CardDescription className='pt-4'>
 											<span className='me-4'>
 												{recipe.time}

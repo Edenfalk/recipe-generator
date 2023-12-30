@@ -95,6 +95,26 @@ export const getRecipes = async (req: Request, res: Response) => {
 
 export const getRecipeById = async (req: Request, res: Response) => {
 	// Logik för att hämta ett recept med ett specifikt ID
+	try {
+		const authorId = req.auth?.payload.sub
+
+		if (!authorId) {
+			return res
+				.status(401)
+				.send('You need to log in to see your recipes')
+		}
+		const recipeId = req.params.id
+
+		const recipe = await prisma.recipe.findUnique({
+			where: {
+				id: recipeId,
+			},
+		})
+
+		res.status(200).json(recipe)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
 }
 
 export const updateRecipe = async (req: Request, res: Response) => {

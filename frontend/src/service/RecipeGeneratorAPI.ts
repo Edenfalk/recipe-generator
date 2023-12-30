@@ -23,7 +23,6 @@ export const createRecipe = async (recipe: TOpenAiRecipe, token: string) => {
 			Authorization: `Bearer ${token}`,
 		},
 	})
-	console.log(response.data)
 	return response.data
 }
 
@@ -36,6 +35,14 @@ export const getRecipesByUser = async (token: string) => {
 			},
 		}
 	)
-	console.log(response.data)
+	return response.data
+}
+
+export const getRecipeById = async (token: string, id: string) => {
+	const response = await recipeGenerator.get<TRecipe>(`recipes/${id}`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
 	return response.data
 }
