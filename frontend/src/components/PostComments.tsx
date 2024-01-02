@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form'
 import { useAuth0 } from '@auth0/auth0-react'
 import { TCreateComment } from '@/types/Comments.types'
 import useCreateComment from '@/hooks/useCreateComment'
+import { BeatLoader } from 'react-spinners'
 
 interface RecipeProps {
 	id: string
@@ -14,18 +15,18 @@ interface RecipeProps {
 
 const PostComment: React.FC<RecipeProps> = ({ id }) => {
 	const { user } = useAuth0()
-	const { mutate: postComment } = useCreateComment()
+	const { mutate: postComment, isPending } = useCreateComment()
 	const form = useForm<TCreateCommentSchema>({
 		resolver: zodResolver(ZCommentSchema),
 		defaultValues: {
 			comment: '',
 		},
 	})
-
+	console.log(user?.picture)
 	const handleSubmit = async (data: TCreateCommentSchema) => {
 		const newComment: TCreateComment = {
 			recipeId: id,
-			content: data.comment,
+			content: data.comment.trim(),
 		}
 		postComment(newComment)
 		form.setValue('comment', '')
@@ -66,7 +67,11 @@ const PostComment: React.FC<RecipeProps> = ({ id }) => {
 					/>
 					<div className='flex justify-end'>
 						<Button type='submit' className='font-bold py-2 px-4'>
-							post comment
+							{isPending ? (
+								<BeatLoader size={8} className='px-8' />
+							) : (
+								<>post comment</>
+							)}
 						</Button>
 					</div>
 				</form>

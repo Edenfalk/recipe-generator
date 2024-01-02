@@ -1,4 +1,4 @@
-import { TComments } from './Comments.types'
+import { TComment } from './Comments.types'
 import { TRatings } from './Ratings.types'
 import { TUser } from './User.types'
 
@@ -23,7 +23,7 @@ export type TRecipe = {
 	servings: string
 	imageUrl: string
 	isPublic: boolean
-	comments: TComments[]
+	comments: TComment[]
 	ratings: TRatings[]
 	createdAt: Date
 	updatedAt: Date

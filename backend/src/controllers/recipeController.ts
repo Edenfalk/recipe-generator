@@ -109,6 +109,16 @@ export const getRecipeById = async (req: Request, res: Response) => {
 			where: {
 				id: recipeId,
 			},
+			include: {
+				comments: {
+					where: {
+						recipeId: recipeId,
+					},
+					include: {
+						author: true,
+					},
+				},
+			},
 		})
 
 		res.status(200).json(recipe)

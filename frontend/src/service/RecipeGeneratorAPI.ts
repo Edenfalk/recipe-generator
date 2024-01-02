@@ -1,4 +1,4 @@
-import { TComments, TCreateComment } from '@/types/Comments.types'
+import { TComment, TCreateComment } from '@/types/Comments.types'
 import { TOpenAiRecipe, TRecipe } from '@/types/Recipe.types'
 import { TNewUser, TUser } from '@/types/User.types'
 import axios from 'axios'
@@ -64,7 +64,7 @@ export const makeRecipePublic = async (token: string, id: string) => {
 }
 
 export const createComment = async (token: string, comment: TCreateComment) => {
-	const response = await recipeGenerator.post<TComments>(
+	const response = await recipeGenerator.post<TComment>(
 		'/comments',
 		comment,
 		{
