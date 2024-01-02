@@ -1,6 +1,9 @@
 import useGetRecipesById from '@/hooks/useGetRecipeById'
 import { Clock, User } from 'lucide-react'
 import React from 'react'
+import { Button } from './ui/button'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useMakeRecipePublic } from '@/hooks/useMakeRecipePublic'
 
 interface RecipeProps {
 	id: string
@@ -8,11 +11,16 @@ interface RecipeProps {
 
 const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
 	const { data: recipe } = useGetRecipesById(id)
-	console.log(recipe)
+	const { mutate: makePublic } = useMakeRecipePublic()
+	const { user } = useAuth0()
+	const userId = user?.sub
 	if (!recipe) {
 		return
 	}
 
+	const handleMakeRecipePublic = () => {
+		makePublic(recipe.id)
+	}
 	return (
 		<div className='mx-auto max-w-7xl flex flex-col items-center justify-center p-8'>
 			<div className='flex flex-col md:flex-row w-full'>
@@ -38,6 +46,14 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
 						</span>
 					</div>
 					<p>{recipe.description}</p>
+					{recipe.isPublic === false &&
+						userId === recipe.authorId && (
+							<div className='flex justify-end items-end'>
+								<Button onClick={handleMakeRecipePublic}>
+									release to community
+								</Button>
+							</div>
+						)}
 				</div>
 			</div>
 

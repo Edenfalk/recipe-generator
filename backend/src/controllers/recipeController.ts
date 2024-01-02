@@ -118,7 +118,22 @@ export const getRecipeById = async (req: Request, res: Response) => {
 }
 
 export const updateRecipe = async (req: Request, res: Response) => {
-	// Logik för att göra receptet isPublic: true
+	// Logik för att göra receptet isPublic: truef
+	try {
+		const recipeId = req.params.id
+		const { isPublic } = req.body
+		const updatedRecipe = await prisma.recipe.update({
+			where: {
+				id: recipeId,
+			},
+			data: {
+				isPublic,
+			},
+		})
+		res.status(200).json(updatedRecipe)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
 }
 
 export const deleteRecipe = async (req: Request, res: Response) => {

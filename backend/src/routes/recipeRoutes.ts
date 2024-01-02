@@ -23,7 +23,7 @@ router.get('/', getRecipes)
 router.get('/:id', getRecipeById)
 
 // Update a recipe
-router.put('/:id', updateRecipe)
+router.patch('/:id', updateRecipe)
 
 // Delete a recipe
 router.delete('/:id', deleteRecipe)

@@ -13,7 +13,6 @@ const NavMenu = () => {
 	const handleLogin = () => {
 		loginWithRedirect()
 	}
-	console.log(user)
 	return (
 		<>
 			<header className='sm:flex sm:justify-between py-3 px-4 border-b mb-5'>
