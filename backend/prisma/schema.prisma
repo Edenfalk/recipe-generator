@@ -17,6 +17,7 @@ model User {
     ratings   Rating[]
     createdAt DateTime  @default(now())
     updatedAt DateTime  @default(now()) @updatedAt
+    Like      Like[]
 }
 
 model Recipe {
@@ -45,6 +46,18 @@ model Comment {
     author    User     @relation(fields: [authorId], references: [auth0Id])
     authorId  String
     createdAt DateTime @default(now())
+    likes     Like[]
+}
+
+model Like {
+    id        String   @id @default(uuid())
+    comment   Comment  @relation(fields: [commentId], references: [id])
+    commentId String
+    user      User     @relation(fields: [userId], references: [auth0Id])
+    userId    String
+    createdAt DateTime @default(now())
+
+    @@unique([commentId, userId])
 }
 
 model Rating {

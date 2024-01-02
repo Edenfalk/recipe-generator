@@ -10,3 +10,8 @@ export type TComments = {
 	authorId: string
 	createdAt: Date
 }
+
+export type TCreateComment = {
+	recipeId: string
+	content: string
+}
