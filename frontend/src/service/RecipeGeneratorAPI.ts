@@ -73,6 +73,25 @@ export const createComment = async (token: string, comment: TCreateComment) => {
 			},
 		}
 	)
+	return response.data
+}
+
+export const deleteComment = async (token: string, commentId: string) => {
+	const response = await recipeGenerator.delete<TComment>(
+		`/comments/${commentId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	)
+	return response.data
+}
+
+export const getCommentsForRecipe = async (recipeId: string) => {
+	const response = await recipeGenerator.get<TComment[]>(
+		`/comments/recipe/${recipeId}`
+	)
 	console.log(response.data)
 	return response.data
 }

@@ -81,6 +81,9 @@ export const getRecipesByUser = async (req: Request, res: Response) => {
 			where: {
 				authorId: authorId,
 			},
+			include: {
+				comments: true,
+			},
 		})
 
 		res.status(200).json(recipes)
@@ -96,13 +99,6 @@ export const getRecipes = async (req: Request, res: Response) => {
 export const getRecipeById = async (req: Request, res: Response) => {
 	// Logik för att hämta ett recept med ett specifikt ID
 	try {
-		const authorId = req.auth?.payload.sub
-
-		if (!authorId) {
-			return res
-				.status(401)
-				.send('You need to log in to see your recipes')
-		}
 		const recipeId = req.params.id
 
 		const recipe = await prisma.recipe.findUnique({

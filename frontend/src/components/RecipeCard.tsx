@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from './ui/card'
-import { MessageSquare, Star, User } from 'lucide-react'
+import { Clock, MessageSquare, Star, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 interface RecipeCardProps {
@@ -25,7 +25,7 @@ const truncate = (str: string, num: number) => {
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 	return (
 		<>
-			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-10'>
+			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto p-10'>
 				{recipes &&
 					recipes.map((recipe) => {
 						return (
@@ -47,7 +47,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 										</Link>
 										<CardDescription className='pt-4'>
 											<span className='me-4'>
-												{recipe.time}
+												{recipe.time}{' '}
+												<Clock className='inline' />
 											</span>
 											<span>
 												{recipe.servings}
@@ -60,7 +61,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 									{truncate(recipe.description, 100)}
 								</CardContent>
 								<CardFooter className='flex justify-between mt-4'>
-									<Star /> <MessageSquare />
+									<Star />
+									<div className='flex items-center'>
+										<MessageSquare className='me-2' />
+										{recipe.comments.length > 0 && (
+											<span>
+												{recipe.comments.length}
+											</span>
+										)}
+									</div>
 								</CardFooter>
 							</Card>
 						)

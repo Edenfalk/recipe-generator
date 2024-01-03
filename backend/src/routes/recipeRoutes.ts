@@ -7,14 +7,15 @@ import {
 	getRecipesByUser,
 	updateRecipe,
 } from '../controllers/recipeController'
+import { validateJwt } from '../middleware/jwtMiddleware'
 
 const router = Router()
 
 // Create a new recipe
-router.post('/', createRecipe)
+router.post('/', validateJwt, createRecipe)
 
 // Get recipe by user
-router.get('/myrecipes', getRecipesByUser)
+router.get('/myrecipes', validateJwt, getRecipesByUser)
 
 // Get all recipes
 router.get('/', getRecipes)
