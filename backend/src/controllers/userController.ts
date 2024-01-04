@@ -5,14 +5,11 @@ const prisma = new PrismaClient()
 
 export const createUser = async (req: Request, res: Response) => {
 	try {
-		const { email, nickname, auth0Id } = req.body
-		console.log(email)
-		console.log(nickname)
-		console.log(auth0Id)
+		const { email, nickname, auth0Id, picture } = req.body
 		const user = await prisma.user.upsert({
 			where: { auth0Id },
 			update: {},
-			create: { email, nickname, auth0Id },
+			create: { email, nickname, auth0Id, picture },
 		})
 
 		res.status(201).json(user)

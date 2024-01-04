@@ -6,11 +6,12 @@ const HomePage = () => {
 	const { user, getAccessTokenSilently } = useAuth0()
 	const checkNewUser = async () => {
 		const token = await getAccessTokenSilently()
-		if (user?.email && user.nickname && user.sub) {
+		if (user?.email && user.nickname && user.sub && user.picture) {
 			const userData = {
 				email: user.email,
 				nickname: user.nickname,
 				auth0Id: user.sub,
+				picture: user.picture,
 			}
 			createUser(userData, token)
 		}

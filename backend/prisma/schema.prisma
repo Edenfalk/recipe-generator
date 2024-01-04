@@ -12,6 +12,7 @@ model User {
     auth0Id   String    @unique
     email     String    @unique
     nickname  String
+    picture   String
     recipes   Recipe[]
     comments  Comment[]
     ratings   Rating[]
