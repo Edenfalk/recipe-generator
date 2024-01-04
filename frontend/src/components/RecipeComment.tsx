@@ -50,7 +50,7 @@ const RecipeComment: React.FC<CommentProps> = ({ comment }) => {
 				<div className='flex justify-between items-start'>
 					<div className='flex items-center mb-2'>
 						<img
-							src='https://s.gravatar.com/avatar/2f5a988e4a76b72e548d20625cd8354a?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fme.png'
+							src={comment.author.picture}
 							alt='User profile'
 							className='w-10 h-10 rounded-full mr-3'
 						/>

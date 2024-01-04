@@ -117,10 +117,21 @@ export const getRecipeById = async (req: Request, res: Response) => {
 						},
 					},
 				},
+				ratings: true,
 			},
 		})
 
-		res.status(200).json(recipe)
+		let averageRating = 0
+		if (recipe && recipe.ratings.length > 0) {
+			averageRating =
+				recipe.ratings.reduce((sum, rating) => sum + rating.value, 0) /
+				recipe.ratings.length
+		}
+
+		res.status(200).json({
+			...recipe,
+			averageRating: averageRating.toFixed(1),
+		})
 	} catch (error) {
 		res.status(500).send('Internal Server Error')
 	}

@@ -22,7 +22,6 @@ const PostComment: React.FC<RecipeProps> = ({ id }) => {
 			comment: '',
 		},
 	})
-	console.log(user?.picture)
 	const handleSubmit = async (data: TCreateCommentSchema) => {
 		const newComment: TCreateComment = {
 			recipeId: id,

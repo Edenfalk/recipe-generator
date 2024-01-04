@@ -1,4 +1,5 @@
 import { TComment, TCreateComment } from '@/types/Comments.types'
+import { TCreateRating } from '@/types/Ratings.types'
 import { TOpenAiRecipe, TRecipe } from '@/types/Recipe.types'
 import { TNewUser, TUser } from '@/types/User.types'
 import axios from 'axios'
@@ -45,6 +46,7 @@ export const getRecipeById = async (token: string, id: string) => {
 			Authorization: `Bearer ${token}`,
 		},
 	})
+	console.log(response)
 	return response.data
 }
 
@@ -122,6 +124,14 @@ export const checkIfUserLikedComment = async (
 			},
 		}
 	)
-	console.log('Like status:', response.data)
+	return response.data
+}
+
+export const createRating = async (token: string, rating: TCreateRating) => {
+	const response = await recipeGenerator.post('/ratings', rating, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
 	return response.data
 }

@@ -4,7 +4,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMakeRecipePublic } from '@/hooks/useMakeRecipePublic'
-
+import RateRecipe from './RateRecipe'
 interface RecipeProps {
 	id: string
 }
@@ -21,6 +21,7 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
 	const handleMakeRecipePublic = () => {
 		makePublic(recipe.id)
 	}
+
 	return (
 		<div className='mx-auto max-w-7xl flex flex-col items-center justify-center p-8'>
 			<div className='flex flex-col md:flex-row w-full'>
@@ -46,10 +47,14 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
 						</span>
 					</div>
 					<p>{recipe.description}</p>
+					<RateRecipe recipe={recipe} />
 					{recipe.isPublic === false &&
 						userId === recipe.authorId && (
 							<div className='flex justify-end items-end'>
-								<Button onClick={handleMakeRecipePublic}>
+								<Button
+									onClick={handleMakeRecipePublic}
+									variant='outline'
+								>
 									release to community
 								</Button>
 							</div>

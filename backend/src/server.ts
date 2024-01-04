@@ -9,6 +9,7 @@ import { jwtCheck, validateJwt } from './middleware/jwtMiddleware'
 import userRoutes from './routes/userRoutes'
 import recipeRoutes from './routes/recipeRoutes'
 import commentRoutes from './routes/commentRoutes'
+import ratingRoutes from './routes/ratingRoutes'
 const app = express()
 
 // Allow only localhost/5173 to access the API
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/users', userRoutes)
 app.use('/api/recipes', recipeRoutes)
 app.use('/api/comments', commentRoutes)
+app.use('/api/ratings', ratingRoutes)
 app.get('/', (req, res) => {
 	console.log('hello from express')
 	res.status(200)

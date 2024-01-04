@@ -7,6 +7,7 @@ export type TUser = {
 	auth0Id: string
 	email: string
 	nickname: string
+	picture: string
 	recipes: TRecipe[]
 	comments: TComment[]
 	ratings: TRatings[]

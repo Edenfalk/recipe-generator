@@ -10,3 +10,8 @@ export type TRatings = {
 	authorId: string
 	createdAt: Date
 }
+
+export type TCreateRating = {
+	recipeId: string
+	value: number
+}

@@ -27,4 +27,5 @@ export type TRecipe = {
 	ratings: TRatings[]
 	createdAt: Date
 	updatedAt: Date
+	averageRating: string
 }
