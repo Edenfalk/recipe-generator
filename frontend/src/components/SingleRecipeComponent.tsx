@@ -17,7 +17,6 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
 	if (!recipe) {
 		return
 	}
-	console.log(recipe.comments)
 
 	const handleMakeRecipePublic = () => {
 		makePublic(recipe.id)

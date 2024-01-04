@@ -95,3 +95,33 @@ export const getCommentsForRecipe = async (recipeId: string) => {
 	console.log(response.data)
 	return response.data
 }
+
+export const likeComment = async (token: string, commentId: string) => {
+	const response = await recipeGenerator.post(
+		`/comments/${commentId}/like`,
+		{},
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	)
+	console.log(response.data)
+	return response.data
+}
+
+export const checkIfUserLikedComment = async (
+	token: string,
+	commentId: string
+) => {
+	const response = await recipeGenerator.get<{ likedByUser: boolean }>(
+		`/comments/${commentId}/likedByUser`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}
+	)
+	console.log('Like status:', response.data)
+	return response.data
+}

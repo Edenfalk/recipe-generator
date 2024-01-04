@@ -11,6 +11,7 @@ export type TComment = {
 	authorId: string
 	createdAt: Date
 	likes: TLike[]
+	_count: { likes: number }
 }
 
 export type TCreateComment = {

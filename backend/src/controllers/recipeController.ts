@@ -97,7 +97,7 @@ export const getRecipes = async (req: Request, res: Response) => {
 }
 
 export const getRecipeById = async (req: Request, res: Response) => {
-	// Logik för att hämta ett recept med ett specifikt ID
+	// Logik för att hämta ett recept med ett specifikt ID ink kommentarer och like
 	try {
 		const recipeId = req.params.id
 
@@ -112,6 +112,9 @@ export const getRecipeById = async (req: Request, res: Response) => {
 					},
 					include: {
 						author: true,
+						_count: {
+							select: { likes: true },
+						},
 					},
 				},
 			},
