@@ -34,12 +34,16 @@ const PostComment: React.FC<RecipeProps> = ({ id }) => {
 	return (
 		<div className='flex flex-col space-y-4 p-8 rounded-lg shadow max-w-7xl mx-auto'>
 			<div className='flex items-center space-x-4'>
-				<img
-					alt='avatar'
-					className='w-10 h-10 rounded-full'
-					src={user?.picture}
-				/>
-				<span className='font-semibold'>{user?.nickname}</span>
+				{user?.picture && (
+					<>
+						<img
+							alt='avatar'
+							className='w-10 h-10 rounded-full'
+							src={user?.picture}
+						/>
+						<span className='font-semibold'>{user?.nickname}</span>
+					</>
+				)}
 			</div>
 			<Form {...form}>
 				<form

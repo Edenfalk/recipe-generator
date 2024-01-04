@@ -65,6 +65,14 @@ const NavMenu = () => {
 									My Recipes
 								</Link>
 							</Button>
+							<Button asChild variant='ghost'>
+								<Link
+									to='/recipes'
+									className='text-sm font-medium'
+								>
+									Recipes
+								</Link>
+							</Button>
 						</nav>
 						<div className='flex items-center'>
 							<div aria-label='Toggle Theme' className='mr-6'>

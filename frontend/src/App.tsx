@@ -6,6 +6,7 @@ import CreateRecipePage from './pages/CreateRecipePage'
 import LoadingSpinner from './components/LoadingSpinner'
 import { Toaster } from './components/ui/toaster'
 import SingleRecipePage from './pages/SingleRecipePage'
+import PublicRecipesPage from './pages/PublicRecipesPage'
 
 function App() {
 	return (
@@ -21,10 +22,10 @@ function App() {
 							path='/createrecipe'
 							element={<CreateRecipePage />}
 						/>
-						{/* <Route
+						<Route
 							path='/recipes'
-							element={<RecipesPage />}
-						/> */}
+							element={<PublicRecipesPage />}
+						/>
 						<Route
 							path='/recipes/:id'
 							element={<SingleRecipePage />}

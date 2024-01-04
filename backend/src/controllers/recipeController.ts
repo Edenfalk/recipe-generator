@@ -108,7 +108,34 @@ export const getRecipesByUser = async (req: Request, res: Response) => {
 }
 
 export const getRecipes = async (req: Request, res: Response) => {
-	// Logik för att hämta alla recept
+	try {
+		const publicRecipes = await prisma.recipe.findMany({
+			where: {
+				isPublic: true,
+			},
+			include: {
+				comments: true,
+				ratings: true,
+			},
+		})
+		const recipesWithAverageRatings = publicRecipes.map((recipe) => {
+			let averageRating = 0
+			if (recipe.ratings.length > 0) {
+				averageRating =
+					recipe.ratings.reduce(
+						(sum, rating) => sum + rating.value,
+						0
+					) / recipe.ratings.length
+			}
+			return {
+				...recipe,
+				averageRating: averageRating.toFixed(1),
+			}
+		})
+		res.status(200).json(recipesWithAverageRatings)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
 }
 
 export const getRecipeById = async (req: Request, res: Response) => {

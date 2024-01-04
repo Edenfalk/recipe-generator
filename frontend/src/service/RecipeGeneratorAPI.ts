@@ -40,12 +40,8 @@ export const getRecipesByUser = async (token: string) => {
 	return response.data
 }
 
-export const getRecipeById = async (token: string, id: string) => {
-	const response = await recipeGenerator.get<TRecipe>(`recipes/${id}`, {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	})
+export const getRecipeById = async (id: string) => {
+	const response = await recipeGenerator.get<TRecipe>(`recipes/${id}`)
 	console.log(response)
 	return response.data
 }
@@ -62,6 +58,11 @@ export const makeRecipePublic = async (token: string, id: string) => {
 			},
 		}
 	)
+	return response.data
+}
+
+export const getAllPublicRecipes = async () => {
+	const response = await recipeGenerator.get<TRecipe[]>('/recipes')
 	return response.data
 }
 
