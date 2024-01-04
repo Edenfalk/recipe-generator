@@ -61,7 +61,13 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipes }) => {
 									{truncate(recipe.description, 100)}
 								</CardContent>
 								<CardFooter className='flex justify-between mt-4'>
-									<Star />
+									<div className='flex items-center'>
+										<Star className='me-2' />
+										<span className='me-2'>
+											{recipe.averageRating}
+										</span>
+										<span>({recipe.ratings.length})</span>
+									</div>
 									<div className='flex items-center'>
 										<MessageSquare className='me-2' />
 										{recipe.comments.length > 0 && (

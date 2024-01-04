@@ -83,10 +83,25 @@ export const getRecipesByUser = async (req: Request, res: Response) => {
 			},
 			include: {
 				comments: true,
+				ratings: true,
 			},
 		})
+		const recipesWithAverageRatings = recipes.map((recipe) => {
+			let averageRating = 0
+			if (recipe.ratings.length > 0) {
+				averageRating =
+					recipe.ratings.reduce(
+						(sum, rating) => sum + rating.value,
+						0
+					) / recipe.ratings.length
+			}
+			return {
+				...recipe,
+				averageRating: averageRating.toFixed(1),
+			}
+		})
 
-		res.status(200).json(recipes)
+		res.status(200).json(recipesWithAverageRatings)
 	} catch (error) {
 		res.status(500).send('Internal Server Error')
 	}
