@@ -1,7 +1,7 @@
 import { getAllPublicRecipes } from '@/service/RecipeGeneratorAPI'
 import { useQuery } from '@tanstack/react-query'
 
-const useGetRecipesById = () => {
+const useGetPublicRecipes = () => {
 	return useQuery({
 		queryKey: ['Public Recipes'],
 		queryFn: async () => {
@@ -10,4 +10,4 @@ const useGetRecipesById = () => {
 	})
 }
 
-export default useGetRecipesById
+export default useGetPublicRecipes

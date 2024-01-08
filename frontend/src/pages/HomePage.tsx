@@ -1,3 +1,5 @@
+import RecipeSlider from '@/components/RecipeSlider'
+import useGetPublicRecipes from '@/hooks/useGetPublicRecipes'
 import { createUser } from '@/service/RecipeGeneratorAPI'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
@@ -22,7 +24,16 @@ const HomePage = () => {
 		}
 	})
 
-	return <div></div>
+	const { data: recipes } = useGetPublicRecipes()
+
+	return (
+		<div>
+			<p className='text-xl text-center mb-2 font-bold'>
+				What to cook tonight?
+			</p>
+			{recipes && <RecipeSlider recipes={recipes} />}
+		</div>
+	)
 }
 
 export default HomePage
