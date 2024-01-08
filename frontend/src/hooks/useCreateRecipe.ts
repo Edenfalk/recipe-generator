@@ -3,8 +3,10 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { createRecipe } from '@/service/RecipeGeneratorAPI'
 import { TOpenAiRecipe, TRecipe } from '@/types/Recipe.types'
 import { useToast } from '@/components/ui/use-toast'
+import { useNavigate } from 'react-router'
 
 export const useCreateRecipe = () => {
+	const navigate = useNavigate()
 	const { getAccessTokenSilently } = useAuth0()
 	const { toast } = useToast()
 
@@ -20,7 +22,7 @@ export const useCreateRecipe = () => {
 				title: 'Success',
 				description: 'Recipe saved successfully!',
 			})
-			console.log('Recipe saved!:', data)
+			navigate(`/recipes/${data.id}`)
 		},
 		onError: (error) => {
 			toast({

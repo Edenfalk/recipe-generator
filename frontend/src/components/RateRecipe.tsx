@@ -46,7 +46,7 @@ const RateRecipe: React.FC<RecipeProps> = ({ recipe }) => {
 					<StarRatings
 						rating={Number(recipe.averageRating) ?? 0}
 						starDimension='22px'
-						starRatedColor='yellow'
+						starRatedColor='#f9cb14'
 						starSpacing='6px'
 					/>
 					<span className='ml-2'>{recipe.averageRating}</span>

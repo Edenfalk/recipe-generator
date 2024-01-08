@@ -81,7 +81,9 @@ const NavMenu = () => {
 							<span className='sr-only'>Toggle Theme</span>
 							{!isLoading && user && <ProfileButton />}
 							{!user && !isLoading && (
-								<Button onClick={handleLogin}>Login</Button>
+								<Button onClick={handleLogin}>
+									Login / Register
+								</Button>
 							)}
 						</div>
 					</div>

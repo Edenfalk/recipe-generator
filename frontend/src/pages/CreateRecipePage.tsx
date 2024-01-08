@@ -24,7 +24,6 @@ const CreateRecipePage = () => {
 		setRecipeData(formData)
 		setIsQueryEnabled(true)
 	}
-	console.log('page submit', recipeQueryResult.data)
 
 	return recipeQueryResult.data ? (
 		<RecipeDisplay
@@ -32,7 +31,9 @@ const CreateRecipePage = () => {
 			onNewRecipe={handleNewRecipeClick}
 		/>
 	) : (
-		<GenerateRecipeForm onRecipeSubmit={handleRecipeSubmit} />
+		!recipeQueryResult.isLoading && (
+			<GenerateRecipeForm onRecipeSubmit={handleRecipeSubmit} />
+		)
 	)
 }
 

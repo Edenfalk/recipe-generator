@@ -7,7 +7,7 @@ const LoadingSpinner = () => {
 	const { isLoading } = useAuth0()
 	return isFetching || isLoading ? (
 		<div className='flex items-center justify-center h-screen'>
-			<BarLoader width={250} />
+			<BarLoader width={250} color='#f9cb14' />
 		</div>
 	) : null
 }
