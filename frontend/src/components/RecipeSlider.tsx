@@ -17,13 +17,13 @@ interface SliderRecipeProps {
 
 const RecipeSlider: React.FC<SliderRecipeProps> = ({ recipes }) => {
 	return (
-		<div className='flex justify-center'>
+		<div className='flex justify-center mb-5'>
 			<Carousel
 				opts={{
 					align: 'start',
 					loop: true,
 				}}
-				className='w-full max-w-screen-xl'
+				className='w-full max-w-screen-2xl'
 			>
 				<CarouselContent>
 					{recipes.map((recipe) => (

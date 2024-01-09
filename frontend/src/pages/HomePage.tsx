@@ -1,3 +1,4 @@
+import Hero from '@/components/Hero'
 import RecipeSlider from '@/components/RecipeSlider'
 import useGetPublicRecipes from '@/hooks/useGetPublicRecipes'
 import { createUser } from '@/service/RecipeGeneratorAPI'
@@ -28,7 +29,8 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<p className='text-xl text-center mb-2 font-bold'>
+			<Hero />
+			<p className='text-xl text-center font-bold mb-2'>
 				What to cook tonight?
 			</p>
 			{recipes && <RecipeSlider recipes={recipes} />}

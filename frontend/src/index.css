@@ -51,6 +51,10 @@
       --ring: 35.5 91.7% 32.9%;
     }
   }
+
+  #navbar a.active {
+    color: #f9cb14
+  }
    
 @layer base {
   * {

@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { ModeToggle } from './ModeToggle.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
+import { NavLink } from 'react-router-dom'
 
 const NavMenu = () => {
 	const { user, isLoading } = useAuth0()
@@ -15,7 +16,7 @@ const NavMenu = () => {
 	}
 	return (
 		<>
-			<header className='sm:flex sm:justify-between py-3 px-4 border-b mb-5'>
+			<header className='sm:flex sm:justify-between py-3 px-4 border-b'>
 				<Container>
 					<div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full'>
 						<div className='flex items-center'>
@@ -48,33 +49,29 @@ const NavMenu = () => {
 								<h1 className='font-bold'>RECIPE GENERATOR</h1>
 							</Link>
 						</div>
-						<nav className='mx-6 flex items-center space-x-4 lg:space-x-6 hidden md:block'>
-							<Button asChild variant='ghost'>
-								<Link
-									to='/createrecipe'
-									className='text-sm font-medium'
-								>
-									Create Recipe
-								</Link>
-							</Button>
-							<Button asChild variant='ghost'>
-								<Link
-									to='/myrecipes'
-									className='text-sm font-medium'
-								>
-									My Recipes
-								</Link>
-							</Button>
-							<Button asChild variant='ghost'>
-								<Link
-									to='/recipes'
-									className='text-sm font-medium'
-								>
-									Recipes
-								</Link>
-							</Button>
-						</nav>
 						<div className='flex items-center'>
+							<nav
+								className='mx-6 flex space-x-4 lg:space-x-6 hidden md:block'
+								id='navbar'
+							>
+								{user && (
+									<Button asChild variant='link'>
+										<NavLink to='/createrecipe'>
+											Create Recipe
+										</NavLink>
+									</Button>
+								)}
+								{user && (
+									<Button asChild variant='link'>
+										<NavLink to='/myrecipes'>
+											My Recipes
+										</NavLink>
+									</Button>
+								)}
+								<Button asChild variant='link'>
+									<NavLink to='/recipes'>Recipes</NavLink>
+								</Button>
+							</nav>
 							<div aria-label='Toggle Theme' className='mr-6'>
 								<ModeToggle />
 							</div>
