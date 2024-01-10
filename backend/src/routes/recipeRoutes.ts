@@ -2,6 +2,9 @@ import { Router } from 'express'
 import {
 	createRecipe,
 	deleteRecipe,
+	getMostCommentedRecipes,
+	getMostRatedRecipes,
+	getNewestRecipes,
 	getRecipeById,
 	getRecipes,
 	getRecipesByUser,
@@ -19,6 +22,12 @@ router.get('/myrecipes', validateJwt, getRecipesByUser)
 
 // Get all recipes
 router.get('/', getRecipes)
+
+router.get('/top10commented', getMostCommentedRecipes)
+
+router.get('/top10mostrated', getMostRatedRecipes)
+
+router.get('/rececentlyadded', getNewestRecipes)
 
 // Get a single recipe by ID
 router.get('/:id', getRecipeById)

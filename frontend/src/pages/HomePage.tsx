@@ -1,6 +1,8 @@
 import Hero from '@/components/Hero'
 import RecipeSlider from '@/components/RecipeSlider'
-import useGetPublicRecipes from '@/hooks/useGetPublicRecipes'
+import useGetMostCommented from '@/hooks/useGetMostCommented'
+import useGetMostRated from '@/hooks/useGetMostRated'
+import useGetRecentlyAddedRecipes from '@/hooks/useGetRecentlyAddedRecipes'
 import { createUser } from '@/service/RecipeGeneratorAPI'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
@@ -25,15 +27,25 @@ const HomePage = () => {
 		}
 	})
 
-	const { data: recipes } = useGetPublicRecipes()
+	const { data: mostCommented } = useGetMostCommented()
+	const { data: mostRated } = useGetMostRated()
+	const { data: recentlyAdded } = useGetRecentlyAddedRecipes()
 
 	return (
 		<div>
 			<Hero />
-			<p className='text-xl text-center font-bold mb-2'>
-				What to cook tonight?
+			<p className='text-xl text-center font-bold mt-20 mb-4'>
+				Most commented recipes
 			</p>
-			{recipes && <RecipeSlider recipes={recipes} />}
+			{mostCommented && <RecipeSlider recipes={mostCommented} />}
+			<p className='text-xl text-center font-bold mt-20 mb-4'>
+				Popular recipes
+			</p>
+			{mostRated && <RecipeSlider recipes={mostRated} />}
+			<p className='text-xl text-center font-bold mt-20 mb-4'>
+				Recently added recipes
+			</p>
+			{recentlyAdded && <RecipeSlider recipes={recentlyAdded} />}
 		</div>
 	)
 }

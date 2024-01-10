@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { createRecipe } from '@/service/RecipeGeneratorAPI'
 import { TOpenAiRecipe, TRecipe } from '@/types/Recipe.types'
@@ -9,6 +9,7 @@ export const useCreateRecipe = () => {
 	const navigate = useNavigate()
 	const { getAccessTokenSilently } = useAuth0()
 	const { toast } = useToast()
+	const queryClient = useQueryClient()
 
 	// First type = return, third type = received
 
@@ -23,6 +24,9 @@ export const useCreateRecipe = () => {
 				description: 'Recipe saved successfully!',
 			})
 			navigate(`/recipes/${data.id}`)
+			queryClient.invalidateQueries({
+				queryKey: ['Recently Added'],
+			})
 		},
 		onError: (error) => {
 			toast({

@@ -42,7 +42,6 @@ export const createRecipe = async (req: Request, res: Response) => {
 			)
 		}
 		const imageUrl = await uploadImageAndGetUrl(tempImageUrl, recipeId)
-		console.log(imageUrl)
 		const newRecipe = await prisma.recipe.create({
 			data: {
 				id: recipeId,
@@ -200,4 +199,113 @@ export const updateRecipe = async (req: Request, res: Response) => {
 
 export const deleteRecipe = async (req: Request, res: Response) => {
 	// Logik för att ta bort ett recept
+}
+
+export const getMostCommentedRecipes = async (req: Request, res: Response) => {
+	try {
+		const recipes = await prisma.recipe.findMany({
+			where: { isPublic: true },
+			include: {
+				comments: true,
+				ratings: true,
+			},
+			orderBy: [
+				{
+					comments: {
+						_count: 'desc',
+					},
+				},
+			],
+			take: 10,
+		})
+
+		const recipesWithAverageRatings = recipes.map((recipe) => {
+			let averageRating = 0
+			if (recipe.ratings.length > 0) {
+				averageRating =
+					recipe.ratings.reduce(
+						(sum, rating) => sum + rating.value,
+						0
+					) / recipe.ratings.length
+			}
+			return {
+				...recipe,
+				averageRating: averageRating.toFixed(1),
+			}
+		})
+
+		res.status(200).json(recipesWithAverageRatings)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
+}
+
+export const getNewestRecipes = async (req: Request, res: Response) => {
+	try {
+		const newRecipes = await prisma.recipe.findMany({
+			where: { isPublic: true },
+			include: {
+				comments: true,
+				ratings: true,
+			},
+			orderBy: { createdAt: 'desc' },
+			take: 10,
+		})
+		const recipesWithAverageRatings = newRecipes.map((recipe) => {
+			let averageRating = 0
+			if (recipe.ratings.length > 0) {
+				averageRating =
+					recipe.ratings.reduce(
+						(sum, rating) => sum + rating.value,
+						0
+					) / recipe.ratings.length
+			}
+			return {
+				...recipe,
+				averageRating: averageRating.toFixed(1),
+			}
+		})
+		res.status(200).json(recipesWithAverageRatings)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
+}
+
+export const getMostRatedRecipes = async (req: Request, res: Response) => {
+	try {
+		const recipes = await prisma.recipe.findMany({
+			where: { isPublic: true },
+			include: {
+				comments: true,
+				ratings: true,
+			},
+			orderBy: [
+				{
+					ratings: {
+						_count: 'desc',
+					},
+				},
+			],
+			take: 10,
+		})
+
+		const recipesWithAverageRatings = recipes.map((recipe) => {
+			let averageRating = 0
+			if (recipe.ratings.length > 0) {
+				averageRating =
+					recipe.ratings.reduce(
+						(sum, rating) => sum + rating.value,
+						0
+					) / recipe.ratings.length
+			}
+			return {
+				...recipe,
+				averageRating: averageRating.toFixed(1),
+			}
+		})
+
+		res.status(200).json(recipesWithAverageRatings)
+	} catch (error) {
+		res.status(500).send('Internal Server Error')
+	}
 }

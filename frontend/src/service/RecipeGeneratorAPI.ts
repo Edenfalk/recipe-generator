@@ -66,6 +66,27 @@ export const getAllPublicRecipes = async () => {
 	return response.data
 }
 
+export const getTenMostCommentedRecipes = async () => {
+	const response = await recipeGenerator.get<TRecipe[]>(
+		'/recipes/top10commented'
+	)
+	return response.data
+}
+
+export const getTenMostRatedRecipes = async () => {
+	const response = await recipeGenerator.get<TRecipe[]>(
+		'/recipes/top10mostrated'
+	)
+	return response.data
+}
+
+export const getRecentlyAddedRecipes = async () => {
+	const response = await recipeGenerator.get<TRecipe[]>(
+		'/recipes/rececentlyadded'
+	)
+	return response.data
+}
+
 export const createComment = async (token: string, comment: TCreateComment) => {
 	const response = await recipeGenerator.post<TComment>(
 		'/comments',
