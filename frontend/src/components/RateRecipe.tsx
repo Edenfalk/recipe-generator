@@ -14,6 +14,8 @@ import {
 	AlertDialogTrigger,
 } from './ui/alert-dialog'
 import { Star } from 'lucide-react'
+import { useAuth0 } from '@auth0/auth0-react'
+import { Button } from './ui/button'
 
 interface RecipeProps {
 	recipe: TRecipe
@@ -21,6 +23,7 @@ interface RecipeProps {
 
 const RateRecipe: React.FC<RecipeProps> = ({ recipe }) => {
 	const { mutate: submitRating } = useCreateRating()
+	const { user, loginWithRedirect } = useAuth0()
 	const [rating, setRating] = useState(0)
 	const [hover, setHover] = useState(0)
 	const handleMouseOver = (value: number) => {
@@ -53,40 +56,52 @@ const RateRecipe: React.FC<RecipeProps> = ({ recipe }) => {
 					<span className='ml-2'>({recipe.ratings.length})</span>
 				</div>
 			)}
-			<AlertDialog>
-				<AlertDialogTrigger
-					asChild
-					className='underline cursor-pointer'
+			{user ? (
+				<AlertDialog>
+					<AlertDialogTrigger
+						asChild
+						className='underline cursor-pointer'
+					>
+						<span>Rate</span>
+					</AlertDialogTrigger>
+					<AlertDialogContent>
+						<AlertDialogHeader>
+							<AlertDialogTitle>Rate recipe</AlertDialogTitle>
+							<AlertDialogDescription className='flex gap-2 justify-center'>
+								{[1, 2, 3, 4, 5].map((star, index) => (
+									<Star
+										key={index}
+										className={`h-8 w-8 cursor-pointer ${
+											(hover || rating) >= star
+												? 'text-yellow-500'
+												: 'text-gray-300'
+										}`}
+										onMouseOver={() =>
+											handleMouseOver(star)
+										}
+										onMouseLeave={handleMouseLeave}
+										onClick={() => handleClick(star)}
+									/>
+								))}
+							</AlertDialogDescription>
+						</AlertDialogHeader>
+						<AlertDialogFooter>
+							<AlertDialogCancel>Cancel</AlertDialogCancel>
+							<AlertDialogAction onClick={handleRating}>
+								Send
+							</AlertDialogAction>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialog>
+			) : (
+				<Button
+					variant='link'
+					className='underline'
+					onClick={() => loginWithRedirect()}
 				>
-					<span>Rate</span>
-				</AlertDialogTrigger>
-				<AlertDialogContent>
-					<AlertDialogHeader>
-						<AlertDialogTitle>Rate recipe</AlertDialogTitle>
-						<AlertDialogDescription className='flex gap-2 justify-center'>
-							{[1, 2, 3, 4, 5].map((star, index) => (
-								<Star
-									key={index}
-									className={`h-8 w-8 cursor-pointer ${
-										(hover || rating) >= star
-											? 'text-yellow-500'
-											: 'text-gray-300'
-									}`}
-									onMouseOver={() => handleMouseOver(star)}
-									onMouseLeave={handleMouseLeave}
-									onClick={() => handleClick(star)}
-								/>
-							))}
-						</AlertDialogDescription>
-					</AlertDialogHeader>
-					<AlertDialogFooter>
-						<AlertDialogCancel>Cancel</AlertDialogCancel>
-						<AlertDialogAction onClick={handleRating}>
-							Send
-						</AlertDialogAction>
-					</AlertDialogFooter>
-				</AlertDialogContent>
-			</AlertDialog>
+					Log in to rate recipe
+				</Button>
+			)}
 		</div>
 	)
 }

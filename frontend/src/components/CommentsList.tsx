@@ -1,13 +1,12 @@
-import useGetRecipesById from '@/hooks/useGetRecipeById'
 import React from 'react'
 import RecipeComment from './RecipeComment'
+import { TRecipe } from '@/types/Recipe.types'
 
 interface RecipeProps {
-	id: string
+	recipe: TRecipe
 }
 
-const CommentsList: React.FC<RecipeProps> = ({ id }) => {
-	const { data: recipe } = useGetRecipesById(id)
+const CommentsList: React.FC<RecipeProps> = ({ recipe }) => {
 	if (!recipe) {
 		return
 	}

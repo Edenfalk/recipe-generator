@@ -15,10 +15,6 @@ export const useCreateComment = () => {
 			return createComment(token, comment)
 		},
 		onSuccess: (data) => {
-			toast({
-				title: 'Success',
-				description: 'Comment posted!',
-			})
 			queryClient.invalidateQueries({
 				queryKey: ['Single Recipe', data.recipeId],
 			})

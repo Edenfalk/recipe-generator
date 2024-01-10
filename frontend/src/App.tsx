@@ -7,6 +7,7 @@ import LoadingSpinner from './components/LoadingSpinner'
 import { Toaster } from './components/ui/toaster'
 import SingleRecipePage from './pages/SingleRecipePage'
 import PublicRecipesPage from './pages/PublicRecipesPage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 	return (
@@ -17,10 +18,21 @@ function App() {
 					<LoadingSpinner />
 					<Routes>
 						<Route path='/' element={<HomePage />} />
-						<Route path='/myrecipes' element={<MyRecipesPage />} />
+						<Route
+							path='/myrecipes'
+							element={
+								<ProtectedRoute>
+									<MyRecipesPage />
+								</ProtectedRoute>
+							}
+						/>
 						<Route
 							path='/createrecipe'
-							element={<CreateRecipePage />}
+							element={
+								<ProtectedRoute>
+									<CreateRecipePage />
+								</ProtectedRoute>
+							}
 						/>
 						<Route
 							path='/recipes'
@@ -36,7 +48,6 @@ function App() {
 					</Routes>
 					<Toaster />
 				</div>
-				{/* <ToastContainer theme='colored' autoClose={2000} /> */}
 			</>
 		</>
 	)

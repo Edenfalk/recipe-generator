@@ -8,13 +8,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { TCreateComment } from '@/types/Comments.types'
 import useCreateComment from '@/hooks/useCreateComment'
 import { BeatLoader } from 'react-spinners'
+import { TRecipe } from '@/types/Recipe.types'
 
 interface RecipeProps {
-	id: string
+	recipe: TRecipe
 }
 
-const PostComment: React.FC<RecipeProps> = ({ id }) => {
-	const { user } = useAuth0()
+const PostComment: React.FC<RecipeProps> = ({ recipe }) => {
+	const { user, loginWithRedirect } = useAuth0()
 	const { mutate: postComment, isPending } = useCreateComment()
 	const form = useForm<TCreateCommentSchema>({
 		resolver: zodResolver(ZCommentSchema),
@@ -24,11 +25,23 @@ const PostComment: React.FC<RecipeProps> = ({ id }) => {
 	})
 	const handleSubmit = async (data: TCreateCommentSchema) => {
 		const newComment: TCreateComment = {
-			recipeId: id,
+			recipeId: recipe.id,
 			content: data.comment.trim(),
 		}
 		postComment(newComment)
 		form.setValue('comment', '')
+	}
+
+	if (!user) {
+		return (
+			<div className='flex mx-auto p-8 max-w-7xl'>
+				<div className='flex justify-end'>
+					<Button onClick={() => loginWithRedirect()}>
+						Log in to write a comment
+					</Button>
+				</div>
+			</div>
+		)
 	}
 
 	return (

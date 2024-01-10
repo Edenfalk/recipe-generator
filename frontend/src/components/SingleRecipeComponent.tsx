@@ -1,16 +1,15 @@
-import useGetRecipesById from '@/hooks/useGetRecipeById'
 import { Clock, User } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMakeRecipePublic } from '@/hooks/useMakeRecipePublic'
 import RateRecipe from './RateRecipe'
+import { TRecipe } from '@/types/Recipe.types'
 interface RecipeProps {
-	id: string
+	recipe: TRecipe
 }
 
-const SingleRecipeComponent: React.FC<RecipeProps> = ({ id }) => {
-	const { data: recipe } = useGetRecipesById(id)
+const SingleRecipeComponent: React.FC<RecipeProps> = ({ recipe }) => {
 	const { mutate: makePublic } = useMakeRecipePublic()
 	const { user } = useAuth0()
 	const userId = user?.sub

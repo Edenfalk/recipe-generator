@@ -28,17 +28,27 @@ const NavMenu = () => {
 										className='w-[300px] sm:w-[400px]'
 									>
 										<nav className='flex flex-col gap-4'>
+											{user && (
+												<>
+													<Link
+														to='/createrecipe'
+														className='block px-2 py-1 lext-lg'
+													>
+														Create Recipe
+													</Link>
+													<Link
+														to='/myrecipes'
+														className='block px-2 py-1 lext-lg'
+													>
+														My Recipes
+													</Link>
+												</>
+											)}
 											<Link
-												to='/createrecipe'
+												to='/recipes'
 												className='block px-2 py-1 lext-lg'
 											>
-												Create Recipe
-											</Link>
-											<Link
-												to='/myrecipes'
-												className='block px-2 py-1 lext-lg'
-											>
-												My Recipes
+												Recipes
 											</Link>
 										</nav>
 									</SheetContent>
