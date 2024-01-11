@@ -1,7 +1,6 @@
 import CommentsList from '@/components/CommentsList'
 import PostComment from '@/components/PostComments'
 import SingleRecipeComponent from '@/components/SingleRecipeComponent'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import useGetRecipesById from '@/hooks/useGetRecipeById'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -31,7 +30,6 @@ const SingleRecipePage = () => {
 						belong to you, or the creator has not made it public
 						yet.
 					</p>
-					<Button></Button>
 				</Card>
 			</div>
 		)
