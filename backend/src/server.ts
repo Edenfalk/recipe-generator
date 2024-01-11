@@ -14,7 +14,7 @@ const app = express()
 
 app.use(
 	cors({
-		origin: 'https://recipegen.onrender.com/',
+		origin: 'https://recipegen.onrender.com',
 	})
 )
 
