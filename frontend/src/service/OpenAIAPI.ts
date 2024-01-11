@@ -18,7 +18,7 @@ export async function getOpenAiRecipe(
 				role: 'assistant',
 				content: `As an AI trained in generating practical and safe food recipes, your task is to create a recipe using these common kitchen ingredients: ${ingredients.join(
 					', '
-				)}. The recipe should be feasible to prepare in ${time} minutes and suitable for ${servings} persons. Please provide a recipe with a title, a brief description, a list of ingredients, and step-by-step, not numbered, cooking instructions. The response should be in JSON format with the following structure:
+				)}. The recipe should be feasible to prepare in ${time} minutes and suitable for ${servings} persons. Please provide a recipe with a title, a brief description, a list of ingredients, and step-by-step, not numbered, cooking instructions. Ensure all ingredients measurements are provided in metric units. The response should be in JSON format with the following structure:
 
                 {
                   "title": "string",

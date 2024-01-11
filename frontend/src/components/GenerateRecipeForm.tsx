@@ -41,7 +41,8 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 		}
 	}
 
-	const removeIngredient = (index: number) => {
+	const removeIngredient = (e: React.MouseEvent, index: number) => {
+		e.preventDefault()
 		setIngredients((currentIngredients) =>
 			currentIngredients.filter((_, i) => i !== index)
 		)
@@ -191,8 +192,8 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 										<span>{ingredient}</span>
 										<button
 											className='ps-3'
-											onClick={() =>
-												removeIngredient(index)
+											onClick={(e) =>
+												removeIngredient(e, index)
 											}
 										>
 											X
