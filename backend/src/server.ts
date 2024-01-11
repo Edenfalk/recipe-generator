@@ -12,10 +12,9 @@ import commentRoutes from './routes/commentRoutes'
 import ratingRoutes from './routes/ratingRoutes'
 const app = express()
 
-// Allow only localhost/5173 to access the API
 app.use(
 	cors({
-		origin: 'http://localhost:5173',
+		origin: process.env.CORS_ORIGIN,
 	})
 )
 
