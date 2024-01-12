@@ -57,10 +57,10 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 	return (
 		<div className="min-h-screen flex flex-col justify-center items-center p-12 bg-[url('./assets/img/chickenHero.png')] bg-cover bg-no-repeat bg-center mb-6">
 			<h1
-				className='text-6xl font-semibold mb-20'
+				className='text-6xl font-semibold mb-20 text-white'
 				style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.9)' }}
 			>
-				Start getting creative with AI generated recipes
+				Create your AI generated recipes
 			</h1>
 			<Card className='flex lg:flex-row flex-col items-center p-8 max-w-6xl w-full opacity-90 gap-4'>
 				<div className='flex flex-col w-full lg:w-1/2'>
