@@ -5,7 +5,7 @@ const PublicRecipesPage = () => {
 	const { data: publicRecipes } = useGetPublicRecipes()
 	return (
 		<>
-			<h1 className='text-center text-xl'>All recipes</h1>
+			<h1 className='text-xl text-center font-bold mt-5'>All recipes</h1>
 			{publicRecipes && <RecipeCard recipes={publicRecipes} />}
 		</>
 	)
