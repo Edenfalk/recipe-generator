@@ -16,7 +16,7 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe, onNewRecipe }) => {
 		mutate(recipe)
 	}
 	return (
-		<div className='max-w-7xl mx-auto p-6 shadow-lg border rounded-lg mt-10'>
+		<div className='max-w-7xl mx-auto p-6 shadow-lg md:border rounded-lg mt-10'>
 			<h1 className='text-3xl lg:text-4xl font-bold mb-3'>
 				{recipe.title}
 			</h1>

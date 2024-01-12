@@ -65,7 +65,7 @@ const GenerateRecipeForm: React.FC<GenerateRecipeFormProps> = ({
 			<Card className='flex lg:flex-row flex-col items-center p-8 max-w-6xl w-full opacity-90 gap-4'>
 				<div className='flex flex-col w-full lg:w-1/2'>
 					<h2 className='text-xl font-semibold mb-4'>Instructions</h2>
-					<ol className='list-decimal list-inside text-left space-y-10 font-semibold'>
+					<ol className='list-decimal list-inside text-left lg:space-y-10 font-semibold'>
 						<li>
 							Fill in the number of servings and the desired
 							cooking time.

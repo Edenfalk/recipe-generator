@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Button } from './ui/button'
 
 const Hero = () => {
-	const { loginWithRedirect } = useAuth0()
+	const { loginWithRedirect, user } = useAuth0()
 	return (
 		<div className="min-h-screen flex flex-row justify-between items-center lg:px-32 px-5 bg-[url('./assets/img/codHero.png')] bg-cover bg-no-repeat bg-center mb-6">
 			<div
@@ -17,12 +17,13 @@ const Hero = () => {
 					explore innovative recipes. Dive into a world of culinary
 					magic today!
 				</p>
-
-				<div className='flex justify-end'>
-					<Button size='lg' onClick={() => loginWithRedirect()}>
-						Register Free Account
-					</Button>
-				</div>
+				{user && (
+					<div className='flex justify-end'>
+						<Button size='lg' onClick={() => loginWithRedirect()}>
+							Register Free Account
+						</Button>
+					</div>
+				)}
 			</div>
 		</div>
 	)

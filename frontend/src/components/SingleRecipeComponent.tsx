@@ -61,7 +61,7 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ recipe }) => {
 				</div>
 			</div>
 
-			<div className='w-full flex flex-col md:flex-row gap-4 p-8 border mt-4'>
+			<div className='w-full flex flex-col md:flex-row gap-4 p-8 md:border mt-4'>
 				<div className='w-full md:w-1/2'>
 					<h2 className='text-xl font-bold mb-3'>Ingredients</h2>
 					<ul className='list-disc pl-5'>

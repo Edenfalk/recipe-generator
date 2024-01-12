@@ -56,7 +56,7 @@ const NavMenu = () => {
 							</Sheet>
 
 							<Link to='/'>
-								<h1 className='font-bold'>RECIPE GENERATOR</h1>
+								<h1 className='font-bold'>RECIPEGEN</h1>
 							</Link>
 						</div>
 						<div className='flex items-center'>

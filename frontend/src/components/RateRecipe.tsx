@@ -97,7 +97,13 @@ const RateRecipe: React.FC<RecipeProps> = ({ recipe }) => {
 				<Button
 					variant='link'
 					className='underline'
-					onClick={() => loginWithRedirect()}
+					onClick={() =>
+						loginWithRedirect({
+							appState: {
+								returnTo: window.location.origin,
+							},
+						})
+					}
 				>
 					Log in to rate recipe
 				</Button>

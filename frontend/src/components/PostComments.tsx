@@ -36,7 +36,15 @@ const PostComment: React.FC<RecipeProps> = ({ recipe }) => {
 		return (
 			<div className='flex mx-auto p-8 max-w-7xl'>
 				<div className='flex justify-end'>
-					<Button onClick={() => loginWithRedirect()}>
+					<Button
+						onClick={() =>
+							loginWithRedirect({
+								appState: {
+									returnTo: window.location.origin,
+								},
+							})
+						}
+					>
 						Log in to write a comment
 					</Button>
 				</div>
