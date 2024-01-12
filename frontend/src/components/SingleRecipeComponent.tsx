@@ -58,6 +58,12 @@ const SingleRecipeComponent: React.FC<RecipeProps> = ({ recipe }) => {
 								</Button>
 							</div>
 						)}
+					<p>
+						Created by:{' '}
+						<span className='font-bold'>
+							{recipe.author.nickname}
+						</span>
+					</p>
 				</div>
 			</div>
 
