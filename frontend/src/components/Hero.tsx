@@ -17,7 +17,7 @@ const Hero = () => {
 					explore innovative recipes. Dive into a world of culinary
 					magic today!
 				</p>
-				{user && (
+				{!user && (
 					<div className='flex justify-end'>
 						<Button size='lg' onClick={() => loginWithRedirect()}>
 							Register Free Account
