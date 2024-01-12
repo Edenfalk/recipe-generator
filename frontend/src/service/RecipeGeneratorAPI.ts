@@ -42,7 +42,6 @@ export const getRecipesByUser = async (token: string) => {
 
 export const getRecipeById = async (id: string) => {
 	const response = await recipeGenerator.get<TRecipe>(`recipes/${id}`)
-	console.log(response)
 	return response.data
 }
 
@@ -116,7 +115,6 @@ export const getCommentsForRecipe = async (recipeId: string) => {
 	const response = await recipeGenerator.get<TComment[]>(
 		`/comments/recipe/${recipeId}`
 	)
-	console.log(response.data)
 	return response.data
 }
 
@@ -130,7 +128,6 @@ export const likeComment = async (token: string, commentId: string) => {
 			},
 		}
 	)
-	console.log(response.data)
 	return response.data
 }
 
