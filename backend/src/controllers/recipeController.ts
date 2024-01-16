@@ -197,10 +197,6 @@ export const updateRecipe = async (req: Request, res: Response) => {
 	}
 }
 
-export const deleteRecipe = async (req: Request, res: Response) => {
-	// Logik för att ta bort ett recept
-}
-
 export const getMostCommentedRecipes = async (req: Request, res: Response) => {
 	try {
 		const recipes = await prisma.recipe.findMany({

@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import {
 	createRecipe,
-	deleteRecipe,
 	getMostCommentedRecipes,
 	getMostRatedRecipes,
 	getNewestRecipes,
@@ -34,8 +33,5 @@ router.get('/:id', getRecipeById)
 
 // Update a recipe
 router.patch('/:id', updateRecipe)
-
-// Delete a recipe
-router.delete('/:id', deleteRecipe)
 
 export default router
