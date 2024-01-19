@@ -23,7 +23,6 @@ app.use(morgan('dev'))
 // Allows a client to send JSON to the server
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-// app.use(validateJwt)
 app.use('/api/users', userRoutes)
 app.use('/api/recipes', recipeRoutes)
 app.use('/api/comments', commentRoutes)

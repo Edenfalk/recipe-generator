@@ -3,7 +3,7 @@ import Container from './Container'
 import { Button } from './ui/button.tsx'
 import { Menu } from 'lucide-react'
 import ProfileButton from './ProfileButton'
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from './ui/sheet'
 import { ModeToggle } from './ModeToggle.tsx'
 import { useAuth0 } from '@auth0/auth0-react'
 import { NavLink } from 'react-router-dom'
@@ -26,30 +26,39 @@ const NavMenu = () => {
 									<SheetContent
 										side='left'
 										className='w-[300px] sm:w-[400px]'
+										onInteractOutside={(event) =>
+											event.preventDefault()
+										}
 									>
 										<nav className='flex flex-col gap-4'>
 											{user && (
 												<>
-													<Link
-														to='/createrecipe'
-														className='block px-2 py-1 lext-lg'
-													>
-														Create Recipe
-													</Link>
-													<Link
-														to='/myrecipes'
-														className='block px-2 py-1 lext-lg'
-													>
-														My Recipes
-													</Link>
+													<SheetClose asChild>
+														<Link
+															to='/createrecipe'
+															className='block px-2 py-1 lext-lg'
+														>
+															Create Recipe
+														</Link>
+													</SheetClose>
+													<SheetClose asChild>
+														<Link
+															to='/myrecipes'
+															className='block px-2 py-1 lext-lg'
+														>
+															My Recipes
+														</Link>
+													</SheetClose>
 												</>
 											)}
-											<Link
-												to='/recipes'
-												className='block px-2 py-1 lext-lg'
-											>
-												Recipes
-											</Link>
+											<SheetClose asChild>
+												<Link
+													to='/recipes'
+													className='block px-2 py-1 lext-lg'
+												>
+													Recipes
+												</Link>
+											</SheetClose>
 										</nav>
 									</SheetContent>
 								</SheetTrigger>
@@ -61,7 +70,7 @@ const NavMenu = () => {
 						</div>
 						<div className='flex items-center'>
 							<nav
-								className='mx-6 flex space-x-4 lg:space-x-6 hidden md:block'
+								className='mx-6 space-x-4 lg:space-x-6 hidden md:block'
 								id='navbar'
 							>
 								{user && (
